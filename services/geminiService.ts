@@ -1,14 +1,9 @@
-
 import { GoogleGenAI, Type, FunctionDeclaration, Modality } from "@google/genai";
 import type { Recipe } from '../types';
 import type { ChatMessage } from '../components/DemoPage'; // Import ChatMessage type
 
-if (!process.env.API_KEY) {
-  console.warn("API_KEY environment variable not set. Using a placeholder key.");
-}
-
-// Renamed for consistency with best practices
-const genAI = new GoogleGenAI({ apiKey: process.env.API_KEY || "YOUR_API_KEY" });
+// Always use const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const recipeSchema = {
   type: Type.OBJECT,
@@ -80,7 +75,7 @@ export async function converseWithFreshPal(userMessage: string, history: ChatMes
       parts: [{ text: msg.text }]
     }));
 
-    const chat = genAI.chats.create({
+    const chat = ai.chats.create({
       model: "gemini-2.5-flash", // Using gemini-2.5-flash for conversational tasks
       history: mappedHistory, // Initialize chat with the full history
       config: {
@@ -202,7 +197,7 @@ export async function generateRecipe(ingredients: string): Promise<Omit<Recipe, 
     // Adjusted prompt to fit the new conversational flow where ingredients are "known"
     const prompt = `Based on the user's preferences (busy grad student, low energy, enjoys all kinds of food, mild/medium spice, under 20 mins) and the available pantry items: ${ingredients}, create a simple and delicious recipe. You may assume common pantry staples like salt, pepper, olive oil, water, and basic spices. Do not include any other main ingredients not listed. Provide the response in a valid JSON format according to the provided schema. Ensure prepTime and cook time are combined and under 20 minutes.`;
 
-    const response = await genAI.models.generateContent({
+    const response = await ai.models.generateContent({
       model: "gemini-2.5-flash", // Using gemini-2.5-flash for text recipe generation
       contents: [{ role: 'user', parts: [{ text: prompt }] }], // Ensure contents is in the correct format
       config: {
@@ -233,7 +228,7 @@ export async function generateRecipeImage(prompt: string): Promise<string> {
         const fullPrompt = `A delicious, vibrant, professional food photography shot of ${prompt}, plated beautifully on a clean, modern surface, with soft, natural lighting.`;
         
         // Switch to gemini-2.5-flash-image for more robust availability in demo environments
-        const response = await genAI.models.generateContent({
+        const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash-image',
             contents: { parts: [{ text: fullPrompt }] },
             config: {

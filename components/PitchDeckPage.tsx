@@ -420,10 +420,10 @@ const PitchDeckPage: React.FC<PitchDeckPageProps> = ({ onClose }) => {
                 </div>
 
                 {/* LATER */}
-                <div className="border-t-8 border-brand-green bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
+                <div className="border-t-8 border-yellow-400 bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
                     <div className="flex justify-between items-center mb-6 border-b pb-4">
                         <h4 className="text-3xl font-bold text-brand-dark">LATER</h4>
-                        <span className="bg-brand-green/10 text-brand-green px-3 py-1 rounded-full text-sm font-bold">12-24 Months</span>
+                        <span className="bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full text-sm font-bold">12-24 Months</span>
                     </div>
                     <ul className="space-y-3 flex-1 overflow-y-auto">
                         {['Order + delivery service', 'AI Cooking Assistant (end-to-end AI)', '"My Kitchen" inventory with premium plans', 'User/custom generated recipes', 'Social Media Cook Club', 'University partnerships', 'Nutrition Tracker', 'PaceSync Voice'].map((item, i) => (

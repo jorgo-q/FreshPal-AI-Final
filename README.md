@@ -1,20 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# FreshPal - AI Kitchen Assistant 🥦
 
-# Run and deploy your AI Studio app
+FreshPal is an AI-powered sous-chef that turns your pantry ingredients into delicious, personalized recipes.
 
-This contains everything you need to run your app locally.
+## 🚀 Getting Started
 
-View your app in AI Studio: https://ai.studio/apps/drive/14H3Rb_1jR3lvllaFoBEOk9mk8cR-J_lP
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-## Run Locally
+2.  **Run locally:**
+    ```bash
+    # Create a .env file with your API_KEY
+    echo "API_KEY=your_google_ai_key_here" > .env
+    
+    npm run dev
+    ```
 
-**Prerequisites:**  Node.js
+## ☁️ Deploying to Vercel
 
+1.  Push this code to a GitHub repository.
+2.  Go to [Vercel](https://vercel.com) and "Add New Project".
+3.  Import your GitHub repository.
+4.  **Important:** In the Vercel Project Settings, go to **Environment Variables**.
+5.  Add a new variable:
+    *   **Key:** `API_KEY`
+    *   **Value:** Your Google Gemini API Key.
+6.  Click **Deploy**.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🛠️ Tech Stack
+
+*   **Framework:** React + Vite
+*   **Styling:** Tailwind CSS
+*   **AI:** Google Gemini API (`@google/genai`)
