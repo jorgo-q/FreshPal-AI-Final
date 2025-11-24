@@ -1,9 +1,12 @@
+
 import { GoogleGenAI, Type, FunctionDeclaration, Modality } from "@google/genai";
 import type { Recipe } from '../types';
 import type { ChatMessage } from '../components/DemoPage'; // Import ChatMessage type
 
-// Always use const ai = new GoogleGenAI({apiKey: process.env.API_KEY});
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize the API client. 
+// Note: In Vite, process.env.API_KEY is replaced by the define plugin in vite.config.ts.
+const apiKey = process.env.API_KEY;
+const ai = new GoogleGenAI({ apiKey: apiKey || 'DUMMY_KEY_FOR_BUILD' });
 
 const recipeSchema = {
   type: Type.OBJECT,
@@ -68,6 +71,10 @@ export interface ConversationResponse {
  * @returns FreshPal's structured response containing text and optional actions.
  */
 export async function converseWithFreshPal(userMessage: string, history: ChatMessage[]): Promise<ConversationResponse> {
+  if (!apiKey || apiKey === 'DUMMY_KEY_FOR_BUILD') {
+     return { text: "I'm missing my API key. Please configure it in the settings." };
+  }
+
   try {
     // Map the local ChatMessage history format to the GoogleGenAI Content format
     const mappedHistory = history.map(msg => ({
@@ -193,6 +200,10 @@ NEVER:
 
 
 export async function generateRecipe(ingredients: string): Promise<Omit<Recipe, 'imageUrl'>> {
+  if (!apiKey || apiKey === 'DUMMY_KEY_FOR_BUILD') {
+     throw new Error("API Key is missing.");
+  }
+
   try {
     // Adjusted prompt to fit the new conversational flow where ingredients are "known"
     const prompt = `Based on the user's preferences (busy grad student, low energy, enjoys all kinds of food, mild/medium spice, under 20 mins) and the available pantry items: ${ingredients}, create a simple and delicious recipe. You may assume common pantry staples like salt, pepper, olive oil, water, and basic spices. Do not include any other main ingredients not listed. Provide the response in a valid JSON format according to the provided schema. Ensure prepTime and cook time are combined and under 20 minutes.`;
@@ -206,7 +217,7 @@ export async function generateRecipe(ingredients: string): Promise<Omit<Recipe, 
       },
     });
 
-    const text = response.text.trim();
+    const text = response.text!.trim();
     // Clean potential markdown code block fences
     const cleanedText = text.replace(/^```json\s*|```\s*$/g, '');
     const recipeData = JSON.parse(cleanedText);
@@ -224,26 +235,39 @@ export async function generateRecipe(ingredients: string): Promise<Omit<Recipe, 
 }
 
 export async function generateRecipeImage(prompt: string): Promise<string> {
+    if (!apiKey || apiKey === 'DUMMY_KEY_FOR_BUILD') {
+        return "https://picsum.photos/800/600";
+    }
+
     try {
         const fullPrompt = `A delicious, vibrant, professional food photography shot of ${prompt}, plated beautifully on a clean, modern surface, with soft, natural lighting.`;
         
         // Switch to gemini-2.5-flash-image for more robust availability in demo environments
+        // Per guidelines: Do not set responseMimeType or responseSchema for nano banana series models.
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash-image',
             contents: { parts: [{ text: fullPrompt }] },
-            config: {
-                responseModalities: [Modality.IMAGE],
-            },
+            // Removed responseModalities as it's not standard for generateContent image generation in the guidelines
         });
 
-        const part = response.candidates?.[0]?.content?.parts?.[0];
-
-        if (part && part.inlineData) {
-            return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
-        } else {
-            console.warn("No image data returned from API, using fallback.");
-            return "https://picsum.photos/800/600";
+        // Per guidelines: Iterate through all parts to find the image part. Do not assume the first part is an image part.
+        let imageUrl = "https://picsum.photos/800/600";
+        const parts = response.candidates?.[0]?.content?.parts;
+        
+        if (parts) {
+            for (const part of parts) {
+                if (part.inlineData) {
+                    imageUrl = `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+                    break;
+                }
+            }
         }
+        
+        if (imageUrl === "https://picsum.photos/800/600") {
+             console.warn("No image data returned from API, using fallback.");
+        }
+
+        return imageUrl;
     } catch (error) {
         console.error("Error generating recipe image:", error);
         // Fallback to a placeholder on error
