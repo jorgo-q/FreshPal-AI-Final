@@ -63,7 +63,7 @@ const TeamPage: React.FC = () => {
                 <div className="mt-20 max-w-3xl mx-auto bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
                     <h2 className="text-3xl font-bold text-brand-dark">Rice University School Project</h2>
                     <p className="text-brand-gray mt-4 leading-relaxed">
-                        FreshPal was developed as a capstone project for the Engineering Product Management class within the Master of Engineering Management program at Rice University. Developed under the expert guidance of <strong>Dr. Uyiosa Abusomwan</strong>, this MVP represents our team's dedication to innovating and turning a classroom concept into a fully functional, AI-powered product innovation.
+                        FreshPal was developed as a capstone project for the Engineering Product Management class within the Master of Engineering Management program at Rice University. Developed under the expert guidance of <strong>Dr. Uyiosa Abusomwan</strong>, this MVP represents our team's dedication to innovating and turning a classroom concept into a functional, AI-powered MPV.
                     </p>
                 </div>
             </div>
