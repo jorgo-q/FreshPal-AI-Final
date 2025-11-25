@@ -1,46 +1,43 @@
+
 import React from 'react';
 
 interface TeamMember {
   name: string;
   role: string;
-  description: string;
-  imageUrl: string;
+  emoji: string;
 }
 
 const teamMembers: TeamMember[] = [
   {
     name: "David Kasemirovisz",
-    role: "Co-Founder & CEO",
-    description: "Passionate about using AI to solve everyday problems and reduce food waste.",
-    imageUrl: `https://picsum.photos/seed/david/200`
+    role: "Co-Founder",
+    emoji: "👱🏻‍♂️"
   },
   {
     name: "Jorgo Qirjaj",
-    role: "Co-Founder & CTO",
-    description: "Tech visionary building scalable platforms that make cooking accessible to everyone.",
-    imageUrl: `https://picsum.photos/seed/jorgo/200`
+    role: "Co-Founder",
+    emoji: "🧔🏻‍♂️"
   },
   {
     name: "Minahil Samee",
-    role: "Head of Product",
-    description: "Designing intuitive experiences that empower home cooks to discover their potential.",
-    imageUrl: `https://picsum.photos/seed/minahil/200`
+    role: "Co-Founder",
+    emoji: "🧕🏽"
   },
   {
     name: "Mrtunjay Gupta",
-    role: "Lead AI Engineer",
-    description: "Developing cutting-edge AI models to personalize every cooking experience.",
-    imageUrl: `https://picsum.photos/seed/mrtunjay/200`
+    role: "Co-Founder",
+    emoji: "👨🏽"
   }
 ];
 
-const TeamMemberCard: React.FC<TeamMember> = ({ name, role, description, imageUrl }) => (
-    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:flex-row items-center text-center md:text-left gap-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-        <img src={imageUrl} alt={name} className="w-24 h-24 rounded-full flex-shrink-0" />
+const TeamMemberCard: React.FC<TeamMember> = ({ name, role, emoji }) => (
+    <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center text-center gap-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full">
+        <div className="w-32 h-32 rounded-full bg-brand-surface flex items-center justify-center text-6xl shadow-inner mb-2 select-none">
+            {emoji}
+        </div>
         <div>
             <h3 className="text-xl font-bold text-brand-dark">{name}</h3>
-            <p className="text-brand-green font-semibold">{role}</p>
-            <p className="text-brand-gray mt-2">{description}</p>
+            <p className="text-brand-green font-bold text-sm uppercase tracking-wide mt-1">{role}</p>
         </div>
     </div>
 );
@@ -59,14 +56,14 @@ const TeamPage: React.FC = () => {
                     We're a passionate team dedicated to transforming how people cook at home, one smart recipe at a time.
                 </p>
 
-                <div className="grid md:grid-cols-2 gap-8 mt-12 max-w-4xl mx-auto">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-w-7xl mx-auto">
                     {teamMembers.map(member => <TeamMemberCard key={member.name} {...member} />)}
                 </div>
 
                 <div className="mt-20 max-w-3xl mx-auto bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
                     <h2 className="text-3xl font-bold text-brand-dark">Rice University School Project</h2>
-                    <p className="text-brand-gray mt-2">
-                        This is an MVP created to support our final project for the Engineering Product Management class at Rice, as part of the Masters of Engineering Management program. We just had some fun and went a little extra, by creating this MVP.
+                    <p className="text-brand-gray mt-4 leading-relaxed">
+                        FreshPal was developed as a capstone project for the Engineering Product Management class within the Master of Engineering Management program at Rice University. Developed under the expert guidance of <strong>Dr. Uyiosa Abusomwan</strong>, this MVP represents our team's dedication to innovating and turning a classroom concept into a fully functional, AI-powered product innovation.
                     </p>
                 </div>
             </div>
