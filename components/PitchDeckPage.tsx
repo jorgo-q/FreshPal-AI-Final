@@ -761,7 +761,7 @@ const PitchDeckPage: React.FC<PitchDeckPageProps> = ({ onClose }) => {
 
                         {/* Column 4: Generate Recipe */}
                         <div className="col-span-1 flex flex-col gap-2">
-                             <StickyNote color="bg-blue-200">Input ingredients -> Get Recipe</StickyNote>
+                             <StickyNote color="bg-blue-200">Input ingredients → Get Recipe</StickyNote>
                              <StickyNote color="bg-blue-200">Quick AI suggestions from pantry</StickyNote>
                         </div>
 
