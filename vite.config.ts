@@ -1,10 +1,10 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vitest/config';
+import { loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
-  // Cast process to any to avoid TypeScript errors if types are missing
   const env = loadEnv(mode, (process as any).cwd(), '');
   const apiKey = env.API_KEY || '';
 
@@ -13,6 +13,10 @@ export default defineConfig(({ mode }) => {
     define: {
       // Safely expose the API_KEY to the client-side code
       'process.env.API_KEY': JSON.stringify(apiKey)
-    }
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+    },
   };
 });

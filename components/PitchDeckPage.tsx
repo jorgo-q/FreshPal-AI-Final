@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const ArrowRight = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>;
 const ArrowLeft = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>;
+const PrinterIcon = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>;
 
 // --- Components ---
 
@@ -83,6 +84,10 @@ interface PitchDeckPageProps {
 
 const PitchDeckPage: React.FC<PitchDeckPageProps> = ({ onClose }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
+
+    const handlePrint = () => {
+        window.print();
+    };
 
     const slides = [
         // -----------------------------------------------------------------------------------------
@@ -1095,6 +1100,14 @@ const PitchDeckPage: React.FC<PitchDeckPageProps> = ({ onClose }) => {
             `}</style>
 
             <div className="absolute top-4 right-4 z-50 flex gap-4 print:hidden">
+                 <button 
+                    onClick={handlePrint}
+                    className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all backdrop-blur-sm flex items-center gap-2 px-4"
+                    title="Save as PDF"
+                >
+                    <PrinterIcon />
+                    <span className="text-sm font-semibold">Save PDF</span>
+                </button>
                 <button 
                     onClick={onClose}
                     className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all backdrop-blur-sm"
@@ -1157,4 +1170,3 @@ const PitchDeckPage: React.FC<PitchDeckPageProps> = ({ onClose }) => {
 };
 
 export default PitchDeckPage;
-    
