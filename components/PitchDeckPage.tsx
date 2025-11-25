@@ -380,67 +380,11 @@ const PitchDeckPage: React.FC<PitchDeckPageProps> = ({ onClose }) => {
             </div>
         </Slide>,
 
-        // -----------------------------------------------------------------------------------------
-        // Slide 6: Product Roadmap
-        // Theme: LIGHT
-        // -----------------------------------------------------------------------------------------
-        <Slide key="slide-6" theme="light">
-            <SectionTitle theme="light">Product Roadmap</SectionTitle>
-            <MainTitle theme="light">Now, Next, Later 🗺️</MainTitle>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl text-left h-3/4">
-                {/* NOW */}
-                <div className="border-t-8 border-red-400 bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
-                    <div className="flex justify-between items-center mb-6 border-b pb-4">
-                        <h4 className="text-3xl font-bold text-brand-dark">NOW</h4>
-                        <span className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-bold">0-6 Months</span>
-                    </div>
-                    <ul className="space-y-3 flex-1 overflow-y-auto">
-                        {['User onboarding flow (dietary restrictions)', 'AI-Powered recipe creator with ingredient input', 'Local store integration (pilot)', 'Free tier with ads (Foodie)'].map((item, i) => (
-                            <li key={i} className="bg-brand-surface p-4 rounded-lg border border-brand-stroke text-base font-medium text-brand-dark">
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* NEXT */}
-                <div className="border-t-8 border-blue-400 bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
-                    <div className="flex justify-between items-center mb-6 border-b pb-4">
-                        <h4 className="text-3xl font-bold text-brand-dark">NEXT</h4>
-                        <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-bold">6-12 Months</span>
-                    </div>
-                    <ul className="space-y-3 flex-1 overflow-y-auto">
-                        {['Improved AI (smart filters)', 'Improved AI (smart shopping, suggest best price/proximity)', 'Official partnership with big store chains (H.E.B. API)', 'Paid tiers (Foodie, Cook, Chef, Master Chef)', 'User reviews recipes', 'Sort recipes with filters'].map((item, i) => (
-                            <li key={i} className="bg-brand-surface p-4 rounded-lg border border-brand-stroke text-base font-medium text-brand-dark">
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                {/* LATER */}
-                <div className="border-t-8 border-yellow-400 bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
-                    <div className="flex justify-between items-center mb-6 border-b pb-4">
-                        <h4 className="text-3xl font-bold text-brand-dark">LATER</h4>
-                        <span className="bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full text-sm font-bold">12-24 Months</span>
-                    </div>
-                    <ul className="space-y-3 flex-1 overflow-y-auto">
-                        {['Order + delivery service', 'AI Cooking Assistant (end-to-end AI)', '"My Kitchen" inventory with premium plans', 'User/custom generated recipes', 'Social Media Cook Club', 'University partnerships', 'Nutrition Tracker', 'PaceSync Voice'].map((item, i) => (
-                            <li key={i} className="bg-brand-surface p-4 rounded-lg border border-brand-stroke text-base font-medium text-brand-dark">
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </Slide>,
-
          // -----------------------------------------------------------------------------------------
-         // Slide 7: Product Strategy (OKRs)
+         // Slide 6: Product Strategy (OKRs)
          // Theme: GREEN
          // -----------------------------------------------------------------------------------------
-         <Slide key="slide-7" theme="green">
+         <Slide key="slide-6" theme="green">
             <div className="w-full max-w-7xl">
                 <SectionTitle theme="green">Product Strategy</SectionTitle>
                 <MainTitle theme="green">OKRs & Metrics 📈</MainTitle>
@@ -492,6 +436,62 @@ const PitchDeckPage: React.FC<PitchDeckPageProps> = ({ onClose }) => {
                 </div>
             </div>
          </Slide>,
+
+        // -----------------------------------------------------------------------------------------
+        // Slide 7: Product Roadmap
+        // Theme: LIGHT
+        // -----------------------------------------------------------------------------------------
+        <Slide key="slide-7" theme="light">
+            <SectionTitle theme="light">Product Roadmap</SectionTitle>
+            <MainTitle theme="light">Now, Next, Later 🗺️</MainTitle>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-7xl text-left h-3/4">
+                {/* NOW */}
+                <div className="border-t-8 border-red-400 bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
+                    <div className="flex justify-between items-center mb-6 border-b pb-4">
+                        <h4 className="text-3xl font-bold text-brand-dark">NOW</h4>
+                        <span className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-bold">0-6 Months</span>
+                    </div>
+                    <ul className="space-y-3 flex-1 overflow-y-auto">
+                        {['User onboarding flow (dietary restrictions)', 'AI-Powered recipe creator with ingredient input', 'Local store integration (pilot)', 'Free tier with ads (Foodie)'].map((item, i) => (
+                            <li key={i} className="bg-brand-surface p-4 rounded-lg border border-brand-stroke text-base font-medium text-brand-dark">
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* NEXT */}
+                <div className="border-t-8 border-blue-400 bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
+                    <div className="flex justify-between items-center mb-6 border-b pb-4">
+                        <h4 className="text-3xl font-bold text-brand-dark">NEXT</h4>
+                        <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-bold">6-12 Months</span>
+                    </div>
+                    <ul className="space-y-3 flex-1 overflow-y-auto">
+                        {['Improved AI (smart filters)', 'Improved AI (smart shopping, suggest best price/proximity)', 'Official partnership with big store chains (H.E.B. API)', 'Paid tiers (Foodie, Cook, Chef, Master Chef)', 'User reviews recipes', 'Sort recipes with filters'].map((item, i) => (
+                            <li key={i} className="bg-brand-surface p-4 rounded-lg border border-brand-stroke text-base font-medium text-brand-dark">
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* LATER */}
+                <div className="border-t-8 border-yellow-400 bg-white rounded-2xl p-6 flex flex-col h-full shadow-lg">
+                    <div className="flex justify-between items-center mb-6 border-b pb-4">
+                        <h4 className="text-3xl font-bold text-brand-dark">LATER</h4>
+                        <span className="bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full text-sm font-bold">12-24 Months</span>
+                    </div>
+                    <ul className="space-y-3 flex-1 overflow-y-auto">
+                        {['Order + delivery service', 'AI Cooking Assistant (end-to-end AI)', '"My Kitchen" inventory with premium plans', 'User/custom generated recipes', 'Social Media Cook Club', 'University partnerships', 'Nutrition Tracker', 'PaceSync Voice'].map((item, i) => (
+                            <li key={i} className="bg-brand-surface p-4 rounded-lg border border-brand-stroke text-base font-medium text-brand-dark">
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </Slide>,
 
         // -----------------------------------------------------------------------------------------
         // Slide 8: Word Cloud (Inserted)

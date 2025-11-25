@@ -6,12 +6,13 @@ export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
   // Cast process to any to avoid TypeScript errors if types are missing
   const env = loadEnv(mode, (process as any).cwd(), '');
+  const apiKey = env.API_KEY || '';
 
   return {
     plugins: [react()],
     define: {
       // Safely expose the API_KEY to the client-side code
-      'process.env.API_KEY': JSON.stringify(env.API_KEY || '')
+      'process.env.API_KEY': JSON.stringify(apiKey)
     }
   };
 });
