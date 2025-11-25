@@ -17,19 +17,46 @@ FreshPal is an AI-powered sous-chef that turns your pantry ingredients into deli
     npm run dev
     ```
 
-## ☁️ Deploying to Vercel
+3.  **Run Tests:**
+    ```bash
+    npm test
+    ```
 
-1.  Push this code to a GitHub repository.
-2.  Go to [Vercel](https://vercel.com) and "Add New Project".
-3.  Import your GitHub repository.
-4.  **Important:** In the Vercel Project Settings, go to **Environment Variables**.
-5.  Add a new variable:
-    *   **Key:** `API_KEY`
-    *   **Value:** Your Google Gemini API Key.
-6.  Click **Deploy**.
+## 🐳 Docker & Cloud Deployment
+
+This project includes a `Dockerfile` and `nginx.conf` ready for deployment services like **Google Cloud Run**.
+
+### Build and Run with Docker Locally
+
+```bash
+# Build the image (Pass your API key as a build argument)
+docker build --build-arg API_KEY=your_actual_api_key -t freshpal-app .
+
+# Run the container on port 8080
+docker run -p 8080:8080 freshpal-app
+```
+
+Visit `http://localhost:8080` to see the app.
+
+### Deploy to Google Cloud Run
+
+1.  **Build and Submit to Artifact Registry:**
+    ```bash
+    gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/freshpal-app .
+    ```
+
+2.  **Deploy to Cloud Run:**
+    ```bash
+    gcloud run deploy freshpal-app \
+      --image gcr.io/YOUR_PROJECT_ID/freshpal-app \
+      --platform managed \
+      --region us-central1 \
+      --allow-unauthenticated
+    ```
 
 ## 🛠️ Tech Stack
 
 *   **Framework:** React + Vite
 *   **Styling:** Tailwind CSS
 *   **AI:** Google Gemini API (`@google/genai`)
+*   **Testing:** Vitest + React Testing Library
